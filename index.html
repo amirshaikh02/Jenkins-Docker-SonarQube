@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amir Shaikh - Technical Support Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0d9488;
+            --secondary-color: #1e293b;
+            --accent-color: #f97316;
+            --bg-light: #f8fafc;
+            --bg-dark: #0f172a;
+            --text-light: #1e293b;
+            --text-dark: #f1f5f9;
+            --card-light: #ffffff;
+            --card-dark: #1e293b;
+            --border-light: #e2e8f0;
+            --border-dark: #334155;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-light);
+            background-color: var(--bg-light);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--card-light);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode nav {
+            background: var(--card-dark);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-center {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        body.dark-mode .nav-links a {
+            color: var(--text-dark);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-light);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .hamburger span {
+            background: var(--text-dark);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            text-align: center;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        body.dark-mode .hero p {
+            color: var(--text-dark);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(13, 148, 136, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Sections */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        body.dark-mode section {
+            border-bottom-color: var(--border-dark);
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #2c3e50;
+        }
+
+        body.dark-mode .about-text p {
+            color: #e8eef5;
+        }
+
+        .about-highlight {
+            background: var(--card-light);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+            margin-top: 1.5rem;
+        }
+
+        body.dark-mode .about-highlight {
+            background: var(--card-dark);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: var(--card-light);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-top: 3px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .skill-card {
+            background: var(--card-dark);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(13, 148, 136, 0.2);
+        }
+
+        .skill-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+        }
+
+        body.dark-mode .skill-list li {
+            color: #e8eef5;
+        }
+
+        .skill-list li:before {
+            content: '→';
+            color: var(--accent-color);
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--border-light);
+        }
+
+        body.dark-mode .timeline::before {
+            background: var(--border-dark);
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            width: 48%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            margin-left: 0;
+            text-align: right;
+            padding-right: 3rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: auto;
+            text-align: left;
+            padding-left: 3rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: var(--primary-color);
+            border: 3px solid var(--bg-light);
+            border-radius: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 5px;
+        }
+
+        body.dark-mode .timeline-dot {
+            border-color: var(--bg-dark);
+        }
+
+        .timeline-content {
+            background: var(--card-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        body.dark-mode .timeline-content {
+            background: var(--card-dark);
+        }
+
+        .timeline-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-date {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-company {
+            color: var(--text-light);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        body.dark-mode .timeline-company {
+            color: var(--text-dark);
+        }
+
+        .timeline-description {
+            color: #2c3e50;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        body.dark-mode .timeline-description {
+            color: #e8eef5;
+        }
+
+        /* Certifications Section */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .cert-card {
+            background: var(--card-light);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .cert-card {
+            background: var(--card-dark);
+            border-color: var(--border-dark);
+        }
+
+        .cert-card:hover {
+            transform: scale(1.05);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 25px rgba(13, 148, 136, 0.2);
+        }
+
+        .cert-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cert-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        body.dark-mode .cert-card p {
+            color: var(--text-dark);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-top: 0.25rem;
+        }
+
+        .contact-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-color);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        body.dark-mode .form-group label {
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.75rem;
+            border: 1px solid var(--border-light);
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            background: var(--bg-light);
+            color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .form-group input,
+        body.dark-mode .form-group textarea {
+            background: var(--card-dark);
+            border-color: var(--border-dark);
+            color: var(--text-dark);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--card-light);
+                flex-direction: column;
+                gap: 0;
+                padding: 2rem;
+                display: none;
+                list-style: none;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            body.dark-mode .nav-links {
+                background: var(--card-dark);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 1rem 0;
+                border-bottom: 1px solid var(--border-light);
+            }
+
+            body.dark-mode .nav-links a {
+                border-bottom-color: var(--border-dark);
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+
+            .nav-center {
+                gap: 1rem;
+            }
+
+            .theme-toggle {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .navbar {
+                padding: 1rem;
+            }
+
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 10px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                margin-left: 0 !important;
+                text-align: left !important;
+                padding-left: 3rem !important;
+                padding-right: 0 !important;
+            }
+
+            .timeline-dot {
+                left: 0;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            .navbar {
+                padding: 0.75rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .skill-card,
+            .cert-card,
+            .timeline-content {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="navbar">
+            <div class="logo">Amir S.</div>
+            <div class="nav-center">
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#training">Training</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Amir Shaikh</h1>
+        <p>Technical Support Engineer | IT Infrastructure & Cloud Solutions</p>
+        <div class="cta-buttons">
+            <a href="#contact" class="btn btn-primary">Get In Touch</a>
+            <a href="#experience" class="btn btn-secondary">View My Work</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    Hi! I'm a Technical Support Engineer with a passion for solving complex IT infrastructure challenges. With expertise in networking, cloud solutions, and enterprise systems, I deliver reliable support and innovative solutions.
+                </p>
+                <p>
+                    I'm currently working at <strong>Orient Technologies Pvt Ltd</strong> as a Desktop Support Engineer, where I manage IT infrastructure, support Microsoft 365 services, and handle cloud backup solutions. My technical foundation comes from strong networking skills and hands-on experience with enterprise systems.
+                </p>
+                <p>
+                    I'm dedicated to continuous learning and have successfully completed AWS Cloud Practitioner certification and intensive training in cloud technologies, Azure infrastructure, and IT systems management.
+                </p>
+            </div>
+            <div class="about-highlight">
+                <h3>📍 Quick Facts</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 0.75rem;"><strong>📧 Email:</strong> iamirshaikh02@gmail.com</li>
+                    <li style="margin-bottom: 0.75rem;"><strong>📱 Phone:</strong> +91 7057701069</li>
+                    <li style="margin-bottom: 0.75rem;"><strong>📍 Location:</strong> Pune, India</li>
+                    <li style="margin-bottom: 0.75rem;"><strong>🎓 Education:</strong> B.E. Information Technology</li>
+                    <li><strong>💼 Experience:</strong> 1+ Years in IT Support</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Skills & Expertise</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>🌐 Networking</h3>
+                <ul class="skill-list">
+                    <li>OSI & TCP/IP Model</li>
+                    <li>DNS & DHCP</li>
+                    <li>VPN & Firewall</li>
+                    <li>Switches & Routers</li>
+                    <li>Network Configuration</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <h3>☁️ Cloud & Infrastructure</h3>
+                <ul class="skill-list">
+                    <li>AWS EC2, VPC, S3</li>
+                    <li>Route 53 & ELB</li>
+                    <li>AWS IAM</li>
+                    <li>Microsoft Azure</li>
+                    <li>VMware Virtualization</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <h3>💼 Enterprise Systems</h3>
+                <ul class="skill-list">
+                    <li>Active Directory</li>
+                    <li>Microsoft 365 & Exchange</li>
+                    <li>Office 365 Services</li>
+                    <li>ERP Support</li>
+                    <li>Ticketing Tools</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <h3>🔧 Technical Support</h3>
+                <ul class="skill-list">
+                    <li>Level 1 & 2 Support</li>
+                    <li>Hardware Configuration</li>
+                    <li>System Troubleshooting</li>
+                    <li>User Account Management</li>
+                    <li>Backup & Recovery</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <h3>🎯 Soft Skills</h3>
+                <ul class="skill-list">
+                    <li>Collaboration</li>
+                    <li>Communication</li>
+                    <li>Problem Solving</li>
+                    <li>Teamwork</li>
+                    <li>Leadership</li>
+                </ul>
+            </div>
+
+            <div class="skill-card">
+                <h3>📚 Other Technologies</h3>
+                <ul class="skill-list">
+                    <li>Windows Administrator</li>
+                    <li>DBMS</li>
+                    <li>Operating Systems</li>
+                    <li>Disaster Recovery</li>
+                    <li>Git & Version Control</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Experience -->
+    <section id="experience">
+        <h2>Work Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Desktop Support Engineer</h3>
+                    <div class="timeline-date">May 2025 - Present</div>
+                    <div class="timeline-company">Orient Technologies Pvt Ltd</div>
+                    <div class="timeline-description">
+                        Manage and support IT infrastructure including servers, networks, and cloud backup. Strong understanding of Microsoft 365 services, security, compliance, and cloud concepts. Experienced in Outlook (IMAP/POP3), Active Directory, DNS, DHCP, and ERP support.
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>Technical Support Engineer</h3>
+                    <div class="timeline-date">July 2024 - April 2025</div>
+                    <div class="timeline-company">Ligionest Technologies Pvt Ltd</div>
+                    <div class="timeline-description">
+                        Provided IT Support Level 1 & 2 with expertise in networking, VPN, and Wi-Fi/Ethernet configurations. Handled software installations, system configurations, user account management, and infrastructure optimization.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Internship & Training -->
+    <section id="training">
+        <h2>Internship & Training</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>🏆 AWS Cloud Training</h3>
+                    <div class="timeline-date">Sept 2023 - Jan 2024</div>
+                    <div class="timeline-company">Vinsys IT Services</div>
+                    <div class="timeline-description">
+                        Intensive 4-month AWS training program covering core cloud concepts, networking, security, and hands-on experience with AWS services. Successfully cleared AWS Certified Cloud Practitioner certification, demonstrating proficiency in cloud technologies.
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <h3>☁️ Microsoft Azure Internship</h3>
+                    <div class="timeline-date">Nov 2021 - Jan 2022</div>
+                    <div class="timeline-company">Future Ready Talent</div>
+                    <div class="timeline-description">
+                        Acquired valuable technical skills utilizing Microsoft Azure and GitHub for real-world challenges. Completed projects applying practical knowledge to deliver solutions, including hosting static web page on Azure infrastructure.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section id="certifications">
+        <h2>Certifications & Courses</h2>
+        <div class="cert-grid">
+            <div class="cert-card">
+                <div class="cert-icon">☁️</div>
+                <h3>AWS Certified Cloud Practitioner</h3>
+                <p><strong>2024</strong></p>
+                <p>Foundational cloud skills and AWS services expertise</p>
+            </div>
+
+            <div class="cert-card">
+                <div class="cert-icon">🌐</div>
+                <h3>Web Development</h3>
+                <p><strong>2024</strong></p>
+                <p>Full-stack web development and modern frameworks</p>
+            </div>
+
+            <div class="cert-card">
+                <div class="cert-icon">🐍</div>
+                <h3>Crash Course on Python</h3>
+                <p><strong>Google | 2023</strong></p>
+                <p>Programming fundamentals and Python expertise by Google</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects/Achievements -->
+    <section style="background: linear-gradient(135deg, rgba(13, 148, 136, 0.1), rgba(249, 115, 22, 0.1));">
+        <h2>Key Projects & Achievements</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>🔐 Shoulder Surfing Authentication</h3>
+                <p style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-light);">Developed secure graphical password authentication system achieving 95% accuracy with robust security against DDoS and brute-force attacks.</p>
+                <p style="color: var(--accent-color); font-size: 0.85rem;"><strong>Tech:</strong> ReactJS, Tailwind CSS, Node.js, Express.js, MongoDB, Vercel</p>
+            </div>
+
+            <div class="skill-card">
+                <h3>📦 AWS Static Website Deployment</h3>
+                <p style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-light);">Deployed dynamic portfolio frontend on AWS S3 with secure bucket policies, version control, and robust GitHub integration.</p>
+                <p style="color: var(--accent-color); font-size: 0.85rem;"><strong>Tech:</strong> S3, HTML, CSS, JavaScript, Git</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Contact Information</h3>
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div>
+                        <strong>Email</strong><br>
+                        <a href="mailto:iamirshaikh02@gmail.com">iamirshaikh02@gmail.com</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div>
+                        <strong>Phone</strong><br>
+                        <a href="tel:+917057701069">+91 7057701069</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <strong>Location</strong><br>
+                        Pune, India
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🔗</div>
+                    <div>
+                        <strong>LinkedIn</strong><br>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener">Visit LinkedIn</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">💻</div>
+                    <div>
+                        <strong>GitHub</strong><br>
+                        <a href="https://github.com" target="_blank" rel="noopener">View GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Send me a Message</h3>
+                <form class="contact-form" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Send Message</button>
+                    <div id="emailStatus" style="margin-top: 1rem; text-align: center; display: none;"></div>
+                </form>
+                <div style="margin-top: 1rem; padding: 1rem; background: rgba(13, 148, 136, 0.1); border-radius: 8px; border-left: 3px solid var(--primary-color);">
+                    <p style="font-size: 0.85rem; color: var(--text-light); margin: 0;">
+                        <strong>ℹ️ How it works:</strong> Your message will be sent securely via Formspree. You'll receive a confirmation email at the address you provide.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Amir Shaikh. All rights reserved. | Technical Support Engineer</p>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+        const savedTheme = localStorage.getItem('theme') || 'light';
+
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️ Light';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            themeToggle.textContent = isDarkMode ? '☀️ Light' : '🌙 Dark';
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+        });
+
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Form submission with Formspree Integration (No Backend Required!)
+        function handleSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            const submitBtn = document.getElementById('submitBtn');
+            const emailStatus = document.getElementById('emailStatus');
+
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            emailStatus.style.display = 'block';
+            emailStatus.style.color = 'var(--primary-color)';
+            emailStatus.textContent = 'Sending your message...';
+
+            // Send via Formspree (No Backend Needed!)
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('subject', subject);
+            formData.append('message', message);
+            formData.append('_subject', `New Contact from ${name}`);
+            formData.append('_captcha', 'false');
+
+            fetch('https://formspree.io/f/YOUR_FORM_ID', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    emailStatus.style.color = 'var(--primary-color)';
+                    emailStatus.innerHTML = `
+                        <strong>✓ Message Sent Successfully!</strong><br>
+                        Thank you ${name}! Your message has been received. I'll get back to you soon at ${email}.<br>
+                        <small>Check your email for a confirmation message.</small>
+                    `;
+                    form.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message';
+                    setTimeout(() => {
+                        emailStatus.style.display = 'none';
+                    }, 6000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                emailStatus.style.color = 'var(--accent-color)';
+                emailStatus.innerHTML = `
+                    <strong>⚠️ Setup Required</strong><br>
+                    <small>To enable email: 1) Sign up at <a href="https://formspree.io" target="_blank" style="color: var(--primary-color); text-decoration: underline;">formspree.io</a> (free)<br>
+                    2) Create a new form<br>
+                    3) Replace 'YOUR_FORM_ID' in the code with your ID<br>
+                    Direct email: <a href="mailto:iamirshaikh02@gmail.com" style="color: var(--primary-color); text-decoration: underline;">iamirshaikh02@gmail.com</a></small>
+                `;
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message';
+            });
+        }
+    </script>
+</body>
+</html>
